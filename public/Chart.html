@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Dashboard</title>
+  <!-- Load the Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <!-- Load Bootstrap CSS styles -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+</head>
+
+<body>
+  <!-- The navbar -->
+  <nav className="navbar navbar-light bg-light">
+    <span className="navbar-brand mb-0 h1" style="font-style: italic;">Welcome to the Dashboard</span>
+  </nav>
+
+  <!-- The container for the charts -->
+  <div class="container mt-5">
+    <!-- The bar chart -->
+    <canvas id="bar-chart" width="400" height="150"></canvas>
+    <!-- The line chart -->
+    <canvas id="line-chart" width="400" height="150"></canvas>
+    <!-- The pie chart -->
+    <canvas id="pie-chart" width="400" height="150"></canvas>
+  </div>
+
+  <!-- The JavaScript code for the charts -->
+  <script>
+    // Dummy data for the charts
+    const chartData = {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      datasets: [
+        {
+          label: 'Sales',
+          data: [65, 59, 80, 81, 56, 55],
+          backgroundColor: 'rgba(255, 99, 132, 0.6)',
+        },
+        {
+          label: 'Expenses',
+          data: [28, 48, 40, 19, 86, 27],
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        },
+      ],
+    };
+
+    const chartOptions = {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    };
+
+    // Get the context for the bar chart canvas
+    const barChartCtx = document.getElementById('bar-chart').getContext('2d');
+    // Create the bar chart
+    const barChart = new Chart(barChartCtx, {
+      type: 'bar',
+      data: chartData,
+      options: chartOptions,
+    });
+
+    // Get the context for the line chart canvas
+    const lineChartCtx = document.getElementById('line-chart').getContext('2d');
+         // Create the line chart
+          const lineChart = new Chart(lineChartCtx, {
+            type: 'line',
+            data: chartData,
+            options: chartOptions,
+          });
+
+          // Get the context for the pie chart canvas
+          const pieChartCtx = document.getElementById('pie-chart').getContext('2d');
+          // Create the pie chart
+          const pieChart = new Chart(pieChartCtx, {
+            type: 'pie',
+            data: chartData,
+            options: chartOptions,
+          });
+        </script>
+    </body>
+    
+    </html>
